@@ -1,0 +1,31 @@
+# Anserini: JDIQ 2018 Experiments
+
+This page documents the script used in the following article to compute optimal retrieval effectiveness by grid search over model parameters:
+
++ Peilin Yang, Hui Fang, and Jimmy Lin. [Anserini: Reproducible Ranking Baselines Using Lucene.](https://dl.acm.org/citation.cfm?doid=3289400.3239571) Journal of Data and Information Quality, 10(4), Article 16, 2018.
+
+Note that the values produced by these scripts are _slightly_ different than those reported in the article.
+The reason for these differences stem from the fact that Anserini evolved throughout the peer review process; the values reported in the article where those generated when the manuscript was submitted.
+By the time the article was published, the implementation of Anserini has progressed.
+As Anserini continues to improve we will update these scripts, which will lead to further divergences between the published values.
+Unfortunately, this is an unavoidable aspect of empirical research on software artifacts.
+
+## Parameter Tuning
+
+Invoke the tuning script on various collections as follows, on `tuna`:
+
+```
+nohup python src/main/python/jdiq2018_effectiveness/run_batch.py --collection disk12 >& jdiq2018.disk12.log &
+nohup python src/main/python/jdiq2018_effectiveness/run_batch.py --collection robust04 >& jdiq2018.robust04.log &
+nohup python src/main/python/jdiq2018_effectiveness/run_batch.py --collection robust05 >& jdiq2018.robust05.log &
+nohup python src/main/python/jdiq2018_effectiveness/run_batch.py --collection wt10g >& jdiq2018.wt10g.log &
+nohup python src/main/python/jdiq2018_effectiveness/run_batch.py --collection gov2 >& jdiq2018.gov2.log &
+nohup python src/main/python/jdiq2018_effectiveness/run_batch.py --collection cw09b --metrics map ndcg20 err20 >& jdiq2018.cw09b.log &
+nohup python src/main/python/jdiq2018_effectiveness/run_batch.py --collection cw12b13 --metrics map ndcg20 err20 >& jdiq2018.cw12b13.log &
+```
+
+The script assumes hard-coded index directories; modify as appropriate.
+
+## Effectiveness
+
+${results}
